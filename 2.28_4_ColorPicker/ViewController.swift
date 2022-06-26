@@ -19,9 +19,9 @@ class ViewController: UIViewController {
     @IBOutlet var greenValueLabel: UILabel!
     @IBOutlet var blueValueLabel: UILabel!
     
-    private var redValue: CGFloat = 0.05
-    private var greenValue: CGFloat = 0.27
-    private var blueValue: CGFloat = 0.49
+//    private var redValue: CGFloat = 0.05
+//    private var greenValue: CGFloat = 0.27
+//    private var blueValue: CGFloat = 0.49
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,10 +29,17 @@ class ViewController: UIViewController {
     }
 
     override func viewWillLayoutSubviews() {
-        rectangleToColorize.backgroundColor = UIColor.init(
-            red: redValue,
-            green: greenValue,
-            blue: blueValue,
+//        rectangleToColorize.backgroundColor = UIColor.init(
+//            red: redValue,
+//            green: greenValue,
+//            blue: blueValue,
+//            alpha: 1
+//        )
+        
+        rectangleToColorize.backgroundColor = UIColor(
+            red: CGFloat(redSlider.value),
+            green: CGFloat(greenSlider.value),
+            blue: CGFloat(blueSlider.value),
             alpha: 1
         )
     }
@@ -42,13 +49,13 @@ class ViewController: UIViewController {
         switch sender {
         case redSlider:
             redValueLabel.text = String(format: "%.2f", redSlider.value)
-            redValue = CGFloat(redSlider.value)
+//            redValue = CGFloat(redSlider.value)
         case greenSlider:
             greenValueLabel.text = String(format: "%.2f", greenSlider.value)
-            greenValue = CGFloat(greenSlider.value)
+//            greenValue = CGFloat(greenSlider.value)
         default:
             blueValueLabel.text = String(format: "%.2f", blueSlider.value)
-            blueValue = CGFloat(blueSlider.value)
+//            blueValue = CGFloat(blueSlider.value)
         }
     }
     
