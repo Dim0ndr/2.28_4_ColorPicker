@@ -19,29 +19,14 @@ class ViewController: UIViewController {
     @IBOutlet var greenValueLabel: UILabel!
     @IBOutlet var blueValueLabel: UILabel!
     
-//    private var redValue: CGFloat = 0.05
-//    private var greenValue: CGFloat = 0.27
-//    private var blueValue: CGFloat = 0.49
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         rectangleToColorize.layer.cornerRadius = 15
+        
     }
 
     override func viewWillLayoutSubviews() {
-//        rectangleToColorize.backgroundColor = UIColor.init(
-//            red: redValue,
-//            green: greenValue,
-//            blue: blueValue,
-//            alpha: 1
-//        )
-        
-        rectangleToColorize.backgroundColor = UIColor(
-            red: CGFloat(redSlider.value),
-            green: CGFloat(greenSlider.value),
-            blue: CGFloat(blueSlider.value),
-            alpha: 1
-        )
+
     }
 
     @IBAction func sliderMoving(_ sender: UISlider) {
@@ -57,6 +42,14 @@ class ViewController: UIViewController {
             blueValueLabel.text = String(format: "%.2f", blueSlider.value)
 //            blueValue = CGFloat(blueSlider.value)
         }
+        
+        rectangleToColorize.backgroundColor = UIColor(
+            red: CGFloat(redSlider.value),
+            green: CGFloat(greenSlider.value),
+            blue: CGFloat(blueSlider.value),
+            alpha: 1
+        )
+        
     }
     
 //    @IBAction func redSliderMoving() {
@@ -74,5 +67,12 @@ class ViewController: UIViewController {
 //        blueValue = CGFloat(blueSlider.value)
 //    }
 
+    
+    private func setLabel(label: UILabel, textFont: UIFont, text: String, alignment: NSTextAlignment) {
+        label.text = text
+        label.textAlignment = alignment
+        label.font = textFont
+    }
+    
 }
 
