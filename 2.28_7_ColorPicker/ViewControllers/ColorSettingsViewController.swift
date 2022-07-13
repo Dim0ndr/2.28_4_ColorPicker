@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ColorSettingsViewController: UIViewController {
 
     @IBOutlet var rectangleToColorize: UIView!
     
@@ -18,6 +18,10 @@ class ViewController: UIViewController {
     @IBOutlet var redValueLabel: UILabel!
     @IBOutlet var greenValueLabel: UILabel!
     @IBOutlet var blueValueLabel: UILabel!
+    
+    @IBOutlet var doneButton: UIButton!
+   
+    var delegate: ColorSettingsViewControllerDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,13 +38,10 @@ class ViewController: UIViewController {
         switch sender {
         case redSlider:
             redValueLabel.text = String(format: "%.2f", redSlider.value)
-//            redValue = CGFloat(redSlider.value)
         case greenSlider:
             greenValueLabel.text = String(format: "%.2f", greenSlider.value)
-//            greenValue = CGFloat(greenSlider.value)
         default:
             blueValueLabel.text = String(format: "%.2f", blueSlider.value)
-//            blueValue = CGFloat(blueSlider.value)
         }
         
         rectangleToColorize.backgroundColor = UIColor(
@@ -52,27 +53,15 @@ class ViewController: UIViewController {
         
     }
     
-//    @IBAction func redSliderMoving() {
-//        redValueLabel.text = String(round(redSlider.value * 100) / 100)
-//        redValue = CGFloat(redSlider.value)
-//    }
-//
-//    @IBAction func greenSliderMoving() {
-//        greenValueLabel.text = String(round(greenSlider.value * 100) / 100)
-//        greenValue = CGFloat(greenSlider.value)
-//    }
-//
-//    @IBAction func blueSliderMoving() {
-//        blueValueLabel.text = String(round(blueSlider.value * 100) / 100)
-//        blueValue = CGFloat(blueSlider.value)
-//    }
-
-    
-    private func setLabel(label: UILabel, textFont: UIFont, text: String, alignment: NSTextAlignment) {
-        label.text = text
-        label.textAlignment = alignment
-        label.font = textFont
+    @IBAction func doneButtonPressed() {
+        delegate.setNewColor(
+            redColor: redSlider.value,
+            greenColor: greenSlider.value,
+            blueColor: blueSlider.value
+        )
+        dismiss(animated: true)
     }
+    
     
 }
 
